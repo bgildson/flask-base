@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: flask-base-app
+    volumes:
+      - .:/home/flask/app
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=mysupersecretkey
+      - SQLALCHEMY_DATABASE_URI=postgres://postgres:postgres@db:5432/flask_base
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12-alpine
+    container_name: flask-base-db
+    tty: true
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=flask_base
+    volumes:
+      - ./.pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: flask-base-pgadmin
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=123
+    volumes:
+      - ./.pgadmin:/var/lib/pgadmin
+    ports:
+      - 9009:80

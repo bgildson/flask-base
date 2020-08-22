@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "flask-base"
+version = "0.1.0"
+description = "This project contains a boilerplate for a basic Flask application."
+authors = ["bgildson <gildson13@hotmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+flask = "^1.1.2"
+flask-sqlalchemy = "^2.4.4"
+psycopg2-binary = "^2.8.5"
+gunicorn = "^20.0.4"
+flask-migrate = "^2.5.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.1"
+pytest-cov = "^2.10.1"
+flake8 = "^3.8.3"
+flask-shell-ipython = "^0.4.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
