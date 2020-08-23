@@ -17,4 +17,7 @@ jobs:
       run: poetry install
 
     - name: Running tests
-      run: pytest
+      run: pytest --cov=.
+
+    - name: Send report to Coveralls
+      uses: AndreMiras/coveralls-python-action@develop
